@@ -56,6 +56,10 @@ fun TipTimeLayout() {
     var amountInput by remember { mutableStateOf("") }
     val amount = amountInput.toDoubleOrNull() ?: 0.0
     val tip = calculateTip(amount)
+    var tipInput by remember { mutableStateOf("") }
+    val tipPercent = tipInput.toDoubleOrNull() ?: 0.0
+
+
     Column(
         modifier = Modifier
             .statusBarsPadding()
@@ -79,6 +83,15 @@ fun TipTimeLayout() {
                 .fillMaxWidth(),
 
         )
+        EditNumberField(
+            label = R.string.how_was_the_service,
+            value = tipInput,
+            onValueChange = { tipInput = it },
+            modifier = Modifier
+              .padding(bottom = 32.dp)
+              .fillMaxWidth()
+
+            )
         Text(
             text = stringResource(R.string.tip_amount, "$0.00"),
             style = MaterialTheme.typography.displaySmall
